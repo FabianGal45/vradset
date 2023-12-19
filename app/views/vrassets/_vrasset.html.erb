@@ -9,4 +9,10 @@
     <%= vrasset.description %>
   </p>
 
+  <% if vrasset.file.attached? %>
+    <p>
+      <strong>File:</strong>
+      <%= link_to vrasset.file.filename, rails_blob_path(vrasset.file, disposition: 'attachment') %>
+    </p>
+  <% end %>
 </div>
