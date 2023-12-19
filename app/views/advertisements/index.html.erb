@@ -1,0 +1,15 @@
+<%= link_to "VR Assets", vrassets_path %>
+<p style="color: green"><%= notice %></p>
+
+<h1>Advertisements</h1>
+
+<div id="advertisements">
+  <% @advertisements.each do |advertisement| %>
+    <%= render advertisement %>
+    <p>
+      <%= link_to "Show this advertisement", advertisement %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New advertisement", new_advertisement_path %>
