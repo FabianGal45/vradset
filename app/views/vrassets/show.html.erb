@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @vrasset %>
+
+<div>
+  <%= link_to "Edit this vrasset", edit_vrasset_path(@vrasset) %> |
+  <%= link_to "Back to vrassets", vrassets_path %>
+
+  <%= button_to "Destroy this vrasset", @vrasset, method: :delete %>
+</div>

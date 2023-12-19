@@ -1,0 +1,2 @@
+class Vrasset < ApplicationRecord
+end

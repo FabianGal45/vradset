@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Vrassets</h1>
+
+<div id="vrassets">
+  <% @vrassets.each do |vrasset| %>
+    <%= render vrasset %>
+    <p>
+      <%= link_to "Show this vrasset", vrasset %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New vrasset", new_vrasset_path %>
