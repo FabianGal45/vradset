@@ -14,4 +14,14 @@
     <%= advertisement.url %>
   </p>
 
+  <% if advertisement.file.attached? %>
+    <% if advertisement.file.image? %>
+      <%= image_tag(advertisement.file)%>
+    <%end%>
+    <p>
+      <strong>File:</strong>
+      <%= link_to advertisement.file.filename, rails_blob_path(advertisement.file, disposition: 'attachment') %>
+    </p>
+  <% end %>
+
 </div>

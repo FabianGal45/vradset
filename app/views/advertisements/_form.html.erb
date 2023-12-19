@@ -27,6 +27,11 @@
   </div>
 
   <div>
+    <%= form.label :file, style: "display: block" %>
+    <%= form.file_field :file%>
+  </div>  
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>
