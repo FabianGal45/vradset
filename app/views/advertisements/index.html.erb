@@ -1,9 +1,7 @@
 <div class="container">
-  <div class="row">
-    <div class="container text-center">
+  <div class="row text-center">
       <h1>Advertisements</h1>
       <p style="color: green"><%= notice %></p>
-    </div>
   </div>
 
   <%# Placeholder card which will be replaced with the analytics view%>
@@ -34,7 +32,7 @@
       </div>
   </div>
 
-  <div id="advertisements" class="row row-cols-md-3 g-3">
+  <div id="advertisements" class="row justify-content-center row-cols-md-3 g-3">
     <% @advertisements.each do |advertisement| %>
       <div class="col">
         <div class="card text-center">
