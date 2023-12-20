@@ -11,27 +11,31 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
+  <div class="row justify-content-center">
+    <div class="col">
+      <div class="mb-3">
+        <%= form.label :title, class: "form-label" %>
+        <%= form.text_field :title, class:"form-control" %>
+      </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
-  </div>
+      <div class="mb-3">
+        <%= form.label :description, class: "form-label" %>
+        <%= form.text_field :description, class:"form-control" %>
+      </div>
 
-  <div>
-    <%= form.label :url, style: "display: block" %>
-    <%= form.text_field :url %>
-  </div>
+      <div class="mb-3">
+        <%= form.label :url, class: "form-label" %>
+        <%= form.text_field :url, class:"form-control" %>
+      </div>
 
-  <div>
-    <%= form.label :file, style: "display: block" %>
-    <%= form.file_field :file%>
-  </div>  
+      <div class="mb-3">
+        <%= form.label :file, class: "form-label" %>
+        <%= form.file_field :file, class:"form-control" %>
+      </div>  
 
-  <div>
-    <%= form.submit %>
+      <div>
+        <%= form.submit 'Submit', class:"btn btn-success" %>
+      </div>
+    </div>
   </div>
 <% end %>

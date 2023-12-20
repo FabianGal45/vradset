@@ -1,10 +1,17 @@
-<p style="color: green"><%= notice %></p>
+<div class="container text-center">
+  <div class="row justify-content-center mt-4">
+    <div class="col-lg-4 col-md-8">
+      <div class="card text-center">
+        <p style="color: green"><%= notice %></p>
 
-<%= render @advertisement %>
+        <%= render @advertisement %>
+      </div>
+    </div>
+  </div>
 
-<div>
-  <%= link_to "Edit this advertisement", edit_advertisement_path(@advertisement) %> |
-  <%= link_to "Back to advertisements", advertisements_path %>
-
-  <%= button_to "Destroy this advertisement", @advertisement, method: :delete %>
+  <div class="btn-group mb-5" role="group">
+    <%= button_to "Delete", @advertisement, method: :delete, class:"btn btn-danger", type:"button" %>
+    <%= link_to "Edit", edit_advertisement_path(@advertisement), class:"btn btn-warning", type:"button" %> 
+    <%= link_to "Back", advertisements_path, class:"btn btn-secondary", type:"button"%>
+  </div>
 </div>
