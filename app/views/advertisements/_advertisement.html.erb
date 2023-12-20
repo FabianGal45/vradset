@@ -1,8 +1,6 @@
 <div id="<%= dom_id advertisement %>">
-  <p>
-    <strong>Title:</strong>
-    <%= advertisement.title %>
-  </p>
+
+  <h5 class="card-title"><%= advertisement.title %></h5>
 
   <p>
     <strong>Description:</strong>
@@ -14,9 +12,11 @@
     <%= advertisement.url %>
   </p>
 
+  <%# if there is a file attached %>
   <% if advertisement.file.attached? %>
+    <%# if the attached file is an image, display the image%>
     <% if advertisement.file.image? %>
-      <%= image_tag(advertisement.file)%>
+      <%= image_tag(advertisement.file , class:"ratio ratio-1x1")%>
     <%end%>
     <p>
       <strong>File:</strong>
