@@ -30,6 +30,7 @@ gem "jbuilder"
 gem "cssbundling-rails"
 gem "jsbundling-rails", "~> 1.2"
 
+gem "devise"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
