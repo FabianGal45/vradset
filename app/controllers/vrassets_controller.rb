@@ -1,5 +1,6 @@
 class VrassetsController < ApplicationController
   before_action :set_vrasset, only: %i[ show edit update destroy ]
+  before_action :verify_permission, only: :show  #demands that user logs in
 
   # GET /vrassets or /vrassets.json
   def index
