@@ -21,6 +21,12 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <%#  Devise - Dropdown for selecting the Role %>
+  <div class="field">
+    <%= f.label :role %><br />
+    <%= f.select :role, User.roles.keys.map { |role| [role.titleize, role] }, {}, { required: true } %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
