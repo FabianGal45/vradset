@@ -18,10 +18,12 @@
     <% if advertisement.file.image? %>
       <%= image_tag(advertisement.file , class:"ratio ratio-1x1")%>
     <%end%>
-    <p>
-      <strong>File:</strong>
-      <%= link_to advertisement.file.filename, rails_blob_path(advertisement.file, disposition: 'attachment') %>
-    </p>
+    <%if user_advertiser? %>
+      <p>
+        <strong>File:</strong>
+        <%= link_to advertisement.file.filename, rails_blob_path(advertisement.file, disposition: 'attachment') %>
+      </p>
+    <% end %>
   <% end %>
 
 </div>

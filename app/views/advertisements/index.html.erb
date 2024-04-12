@@ -3,11 +3,13 @@
       <h1>Advertisements</h1>
   </div>
 
-  <div class="row justify-content-center my-3">
-      <div class="container text-center">
-        <%= link_to "New advertisement", new_advertisement_path, class:"btn btn-primary", role:"button" %>
-      </div>
-  </div>
+  <%if user_advertiser? %>
+    <div class="row justify-content-center my-3">
+        <div class="container text-center">
+          <%= link_to "New advertisement", new_advertisement_path, class:"btn btn-primary", role:"button" %>
+        </div>
+    </div>
+  <% end %>
 
   <div id="advertisements" class="row justify-content-center row-cols-md-3 g-3">
     <% @advertisements.each do |advertisement| %>
@@ -15,7 +17,9 @@
         <div class="card text-center">
           <div class="card-body">
             <%= render advertisement %> 
-            <%= link_to "Show this advertisement", advertisement, class:"btn btn-outline-secondary", role:"button"  %>
+            <%if user_advertiser? %>
+              <%= link_to "Show this advertisement", advertisement, class:"btn btn-outline-secondary", role:"button"  %>
+            <% end %>  
           </div>
         </div>
       </div>
