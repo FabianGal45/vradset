@@ -1,7 +1,7 @@
 class AdvertisementsController < ApplicationController
   before_action :authenticate_user!, except: [:index ] #only display and show advertisements to users who are not logged in
   before_action :set_advertisement, only: %i[ show edit update destroy ]
-  before_action :check_user_permission, only: [:show, :edit, :update, :destroy]
+  before_action :verify_permission, only: [:show, :edit, :update, :destroy]
 
   # GET /advertisements or /advertisements.json
   def index
@@ -72,7 +72,7 @@ class AdvertisementsController < ApplicationController
       @advertisement = Advertisement.find(params[:id])
     end
 
-    def check_user_permission
+    def verify_permission
       unless current_user && (current_user.advertiser? || current_user.admin?)
         redirect_to advertisements_path, alert: "You are not authorized to perform this action."
       end
