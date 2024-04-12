@@ -3,7 +3,7 @@
     <h1>Vrassets</h1>
   </div>
 
-  <% if user_developer? %>
+  <% if user_admin? %>
     <div class="row justify-content-center text-center my-3">
       <div class="col-8">
         <%= link_to "New Asset", new_vrasset_path, class:"btn btn-primary", role:"button" %>
@@ -17,8 +17,14 @@
         <div class="card text-center">
           <div class="card-body">
             <%= render vrasset %>
-            <% if user_developer? %>
+
+            <%if user_admin? %>
               <%= link_to "Show this vrasset", vrasset %>
+            <% end %>
+
+            <% if user_developer? %>
+              <%# Functionality to be added later for this %>
+              <a href="">Select and start setup</a> 
             <% end %>
           </div>
         </div>
