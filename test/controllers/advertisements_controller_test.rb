@@ -2,6 +2,8 @@ require "test_helper"
 
 class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @user = users(:admin) #grabs the admin from the users fixtures
+    sign_in @user #This makes use of the Devise helper to sign in the user.
     @advertisement = advertisements(:one)
   end
 

@@ -4,8 +4,21 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+
+# Users are required in order to perform actions within the tests and they are set up here.
+# The resources used to resolve "ActiveRecord::RecordNotUnique: RuntimeError: UNIQUE constraint failed: users.email" can be found below:
+# https://stackoverflow.com/questions/4577737/functional-testing-with-rails-and-devise-what-to-put-in-my-fixtures
+# https://medium.com/@SuhaibH/rails-fixtures-for-integration-tests-with-devise-3e2158f1d197
+# https://nts.strzibny.name/rails-fixtures-db-seed/
+
+admin:
+  email: admin@admin.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'test123') %>
+
+developer:
+  email: developer@developer.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'test123') %>
+
+advertiser:
+  email: advertiser@advertiser.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'test123') %>
