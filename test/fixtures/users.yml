@@ -14,11 +14,14 @@
 admin:
   email: admin@admin.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'test123') %>
+  role: admin
 
 developer:
   email: developer@developer.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'test123') %>
+  role: developer
 
 advertiser:
   email: advertiser@advertiser.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'test123') %>
+  role: advertiser

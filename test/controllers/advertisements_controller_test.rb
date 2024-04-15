@@ -7,6 +7,12 @@ class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
     @advertisement = advertisements(:one)
   end
 
+  test "user is signed in" do
+    sign_in @user
+    get root_url
+    assert_response :success
+  end
+
   test "should get index" do
     get advertisements_url
     assert_response :success

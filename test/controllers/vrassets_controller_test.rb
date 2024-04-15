@@ -2,7 +2,15 @@ require "test_helper"
 
 class VrassetsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @user = users(:admin) #grabs the admin from the users fixtures
+    sign_in @user #This makes use of the Devise helper to sign in the user.
     @vrasset = vrassets(:one)
+  end
+
+  test "user is signed in" do # Check to see if the admin user is signed in. If it is then all tests should run fine.
+    sign_in @user
+    get root_url
+    assert_response :success
   end
 
   test "should get index" do
