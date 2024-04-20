@@ -1,5 +1,7 @@
 class AdvertisementsController < ApplicationController
+  before_action :authenticate_user!, except: [:index ] #only display and show advertisements to users who are not logged in
   before_action :set_advertisement, only: %i[ show edit update destroy ]
+  before_action :verify_permission, only: [:show, :edit, :update, :destroy]
 
   # GET /advertisements or /advertisements.json
   def index
@@ -57,11 +59,25 @@ class AdvertisementsController < ApplicationController
     end
   end
 
+  # Checks used to ensure the user has the role advertiser
+  def check_advertiser_role
+    unless current_user.advertiser?
+      redirect_to root_path, alert: "You are not authorized to perform this action."
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_advertisement
       @advertisement = Advertisement.find(params[:id])
     end
+
+    def verify_permission
+      unless current_user && (current_user.advertiser? || current_user.admin?)
+        redirect_to advertisements_path, alert: "You are not authorized to perform this action."
+      end
+    end
+
 
     # Only allow a list of trusted parameters through.
     def advertisement_params

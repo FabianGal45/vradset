@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">VR-Adset</a>
+    <%= link_to "VR-Adset", root_path, class: "navbar-brand"%>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -15,6 +15,28 @@
             class: ("nav-link #{'active' if current_page?(vrassets_path)}"), 
             "aria-current" => ("page" if current_page?(vrassets_path)) 
         %>
+
+        <%# If the user is signed in %>
+        <% if user_signed_in? %>
+          <%# Display the Edit and Log out links %>
+          <%= link_to "Edit User", edit_user_registration_path, 
+            class: ("nav-link #{'active' if current_page?(edit_user_registration_path)}"), 
+            "aria-current" => ("page" if current_page?(edit_user_registration_path)) 
+          %>
+
+          <%= button_to "Log Out", destroy_user_session_path, method: :delete, 
+            class: ("nav-link #{'active' if current_page?(edit_user_registration_path)}"), 
+            "aria-current" => ("page" if current_page?(edit_user_registration_path))
+          %>
+        <% else %>
+          <%# Display the Log In link %>
+          <%= link_to "Log In", new_user_session_path, 
+            class: ("nav-link #{'active' if current_page?(new_user_session_path)}"), 
+            "aria-current" => ("page" if current_page?(new_user_session_path))
+          %>
+        <% end %>
+      
+        
 
         <a class="nav-link disabled" aria-disabled="true">Admin Portal</a>
       </div>

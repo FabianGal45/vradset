@@ -1,36 +1,15 @@
 <div class="container">
   <div class="row text-center">
       <h1>Advertisements</h1>
-      <p style="color: green"><%= notice %></p>
   </div>
 
-  <%# Placeholder card which will be replaced with the analytics view%>
-  <div class="row">
-    <div class="col">
-      <div class="card" aria-hidden="true">
-        <div class="card-body">
-          <h5 class="card-title placeholder-glow">
-            <p class="text-center">Analytics</p>
-            <span class="placeholder col-6"></span>
-          </h5>
-          <p class="card-text placeholder-glow">
-            <span class="placeholder col-7"></span>
-            <span class="placeholder col-4 bg-warning"></span>
-            <span class="placeholder col-4 bg-success"></span>
-            <span class="placeholder col-6"></span>
-            <span class="placeholder col-8"></span>
-          </p>
-          <a class="btn btn-primary disabled placeholder col-6" aria-disabled="true"></a>
+  <%if user_advertiser? %>
+    <div class="row justify-content-center my-3">
+        <div class="container text-center">
+          <%= link_to "New advertisement", new_advertisement_path, class:"btn btn-primary", role:"button" %>
         </div>
-      </div>
     </div>
-  </div>
-
-  <div class="row justify-content-center my-3">
-      <div class="container text-center">
-        <%= link_to "New advertisement", new_advertisement_path, class:"btn btn-primary", role:"button" %>
-      </div>
-  </div>
+  <% end %>
 
   <div id="advertisements" class="row justify-content-center row-cols-md-3 g-3">
     <% @advertisements.each do |advertisement| %>
@@ -38,7 +17,9 @@
         <div class="card text-center">
           <div class="card-body">
             <%= render advertisement %> 
-            <%= link_to "Show this advertisement", advertisement, class:"btn btn-outline-secondary", role:"button"  %>
+            <%if user_advertiser? %>
+              <%= link_to "Show this advertisement", advertisement, class:"btn btn-outline-secondary", role:"button"  %>
+            <% end %>  
           </div>
         </div>
       </div>

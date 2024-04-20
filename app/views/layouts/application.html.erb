@@ -15,6 +15,17 @@
 
   <body>
     <%= render 'layouts/navbar' %>
+
+    <%#Devise Notice and alert%>
+    <% if notice %>
+      <p class="notice alert alert-success text-center"><%= notice %></p>
+    <% end %>
+    
+    <% if alert %>
+      <p class="alert alert alert-warning text-center"><%= alert %></p>
+    <% end %>
+  
+
     <%= yield %>
 
     <%# Bootstrap %>

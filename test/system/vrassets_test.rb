@@ -2,6 +2,8 @@ require "application_system_test_case"
 
 class VrassetsTest < ApplicationSystemTestCase
   setup do
+    @user = users(:admin) #grabs the admin from the users fixtures
+    sign_in @user #This makes use of the Devise helper to sign in the user.
     @vrasset = vrassets(:one)
   end
 
@@ -12,11 +14,11 @@ class VrassetsTest < ApplicationSystemTestCase
 
   test "should create vrasset" do
     visit vrassets_url
-    click_on "New vrasset"
+    click_on "New Asset"
 
     fill_in "Description", with: @vrasset.description
     fill_in "Title", with: @vrasset.title
-    click_on "Create Vrasset"
+    click_on "Submit"
 
     assert_text "Vrasset was successfully created"
     click_on "Back"
@@ -24,11 +26,11 @@ class VrassetsTest < ApplicationSystemTestCase
 
   test "should update Vrasset" do
     visit vrasset_url(@vrasset)
-    click_on "Edit this vrasset", match: :first
+    click_on "Edit", match: :prefer_exact
 
     fill_in "Description", with: @vrasset.description
     fill_in "Title", with: @vrasset.title
-    click_on "Update Vrasset"
+    click_on "Submit"
 
     assert_text "Vrasset was successfully updated"
     click_on "Back"
@@ -36,7 +38,7 @@ class VrassetsTest < ApplicationSystemTestCase
 
   test "should destroy Vrasset" do
     visit vrasset_url(@vrasset)
-    click_on "Destroy this vrasset", match: :first
+    click_on "Delete", match: :first
 
     assert_text "Vrasset was successfully destroyed"
   end
