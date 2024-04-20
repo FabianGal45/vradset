@@ -1,0 +1,93 @@
+<html><head>
+    <title>Vradset</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    
+    
+
+    <link rel="stylesheet" href="/assets/application-8daa3c81d43790c55d6bf1b66c0120574af34a4471b2d622e2fc341c0e51f42d.css" data-turbo-track="reload">
+    <script src="/assets/application-505ba2034cc3bd79f052e2851e6a42ab932b44bad7a3668c2017cd8c57a6d76c.js" data-turbo-track="reload" defer="defer"></script>
+    <script type="importmap" data-turbo-track="reload">{
+  "imports": {
+    "application": "/assets/application-505ba2034cc3bd79f052e2851e6a42ab932b44bad7a3668c2017cd8c57a6d76c.js",
+    "@rails/ujs": "https://ga.jspm.io/npm:@rails/ujs@7.1.2/app/assets/javascripts/rails-ujs.esm.js",
+    "bootstrap": "https://ga.jspm.io/npm:bootstrap@5.3.2/dist/js/bootstrap.esm.js",
+    "@popperjs/core": "https://ga.jspm.io/npm:@popperjs/core@2.11.8/lib/index.js"
+  }
+}</script>
+<link rel="modulepreload" href="/assets/application-505ba2034cc3bd79f052e2851e6a42ab932b44bad7a3668c2017cd8c57a6d76c.js">
+<script src="/assets/es-module-shims.min-4ca9b3dd5e434131e3bb4b0c1d7dff3bfd4035672a5086deec6f73979a49be73.js" async="async" data-turbo-track="reload"></script>
+<script type="module">import "application"</script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-sm bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">VR-Adset</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link " href="/advertisements">Advertisements</a>
+
+        <a class="nav-link " href="/vrassets">Assets</a>
+
+          <a class="nav-link active" aria-current="page" href="/users/edit">Edit User</a>
+
+          <form class="button_to" method="post" action="/users/sign_out"><input type="hidden" name="_method" value="delete" autocomplete="off"><button class="nav-link active" aria-current="page" type="submit">Log Out</button></form>
+      
+        
+
+        <a class="nav-link disabled" aria-disabled="true">Admin Portal</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+    
+  
+
+    <h2>Edit User</h2>
+
+<form class="edit_user" id="edit_user" action="/users" accept-charset="UTF-8" method="post"><input type="hidden" name="_method" value="put" autocomplete="off">
+  
+
+  <div class="field">
+    <label for="user_email">Email</label><br>
+    <input autofocus="autofocus" autocomplete="email" type="email" value="admin@admin.com" name="user[email]" id="user_email">
+  </div>
+
+
+  <div class="field">
+    <label for="user_password">Password</label> <i>(leave blank if you don't want to change it)</i><br>
+    <input autocomplete="new-password" type="password" name="user[password]" id="user_password">
+      <br>
+      <em>6 characters minimum</em>
+  </div>
+
+  <div class="field">
+    <label for="user_password_confirmation">Password confirmation</label><br>
+    <input autocomplete="new-password" type="password" name="user[password_confirmation]" id="user_password_confirmation">
+  </div>
+
+  <div class="field">
+    <label for="user_current_password">Current password</label> <i>(we need your current password to confirm your changes)</i><br>
+    <input autocomplete="current-password" type="password" name="user[current_password]" id="user_current_password">
+  </div>
+
+  <div class="actions">
+    <input type="submit" name="commit" value="Update" data-disable-with="Update">
+  </div>
+</form>
+<h3>Cancel my account</h3>
+
+<div>Unhappy? <form class="button_to" method="post" action="/users"><input type="hidden" name="_method" value="delete" autocomplete="off"><button data-confirm="Are you sure?" data-turbo-confirm="Are you sure?" type="submit">Cancel my account</button></form></div>
+
+<a href="http://127.0.0.1:62648/advertisements/980190962">Back</a>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  
+
+</body></html>

@@ -2,6 +2,8 @@ require "application_system_test_case"
 
 class AdvertisementsTest < ApplicationSystemTestCase
   setup do
+    @user = users(:admin) #grabs the admin from the users fixtures
+    sign_in @user #This makes use of the Devise helper to sign in the user.
     @advertisement = advertisements(:one)
   end
 
@@ -17,7 +19,7 @@ class AdvertisementsTest < ApplicationSystemTestCase
     fill_in "Description", with: @advertisement.description
     fill_in "Title", with: @advertisement.title
     fill_in "Url", with: @advertisement.url
-    click_on "Create Advertisement"
+    click_on "Submit"
 
     assert_text "Advertisement was successfully created"
     click_on "Back"
@@ -25,12 +27,12 @@ class AdvertisementsTest < ApplicationSystemTestCase
 
   test "should update Advertisement" do
     visit advertisement_url(@advertisement)
-    click_on "Edit this advertisement", match: :first
+    click_on "Edit", match: :prefer_exact
 
     fill_in "Description", with: @advertisement.description
     fill_in "Title", with: @advertisement.title
     fill_in "Url", with: @advertisement.url
-    click_on "Update Advertisement"
+    click_on "Submit"
 
     assert_text "Advertisement was successfully updated"
     click_on "Back"
@@ -38,7 +40,7 @@ class AdvertisementsTest < ApplicationSystemTestCase
 
   test "should destroy Advertisement" do
     visit advertisement_url(@advertisement)
-    click_on "Destroy this advertisement", match: :first
+    click_on "Delete", match: :first
 
     assert_text "Advertisement was successfully destroyed"
   end
