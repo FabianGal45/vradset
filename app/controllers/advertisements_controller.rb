@@ -1,15 +1,27 @@
 class AdvertisementsController < ApplicationController
+  include ApplicationHelper # Calls upone the application_helper.rb file where simple methods have been declared and can be reused here for simplicity.
   before_action :authenticate_user!, except: [:index ] #only display and show advertisements to users who are not logged in
   before_action :set_advertisement, only: %i[ show edit update destroy ]
   before_action :verify_permission, only: [:show, :edit, :update, :destroy]
 
   # GET /advertisements or /advertisements.json
   def index
-    @advertisements = Advertisement.all
+    # Only display the advertisements corresponding to the user that created them when logged in.
+    if user_advertiser?
+      @advertisements = current_user.advertisements
+    else
+      # If the no user is signed in then all advertisements will be displayed. However they cannot be edited.
+      @advertisements = Advertisement.all
+    end
   end
 
   # GET /advertisements/1 or /advertisements/1.json
   def show
+    # limit so only the owner of the user can view the advertisement when searching for /advertisements/1
+    @advertisement = Advertisement.find(params[:id])
+    if user_advertiser? && current_user != @advertisement.user
+      redirect_to advertisements_path, alert: 'You are not authorized to view this advertisement.'
+    end
   end
 
   # GET /advertisements/new
@@ -23,7 +35,8 @@ class AdvertisementsController < ApplicationController
 
   # POST /advertisements or /advertisements.json
   def create
-    @advertisement = Advertisement.new(advertisement_params)
+    # each new advertisement will be associated to the user that is currently signed up and able to create it.
+    @advertisement = current_user.advertisements.build(advertisement_params)
 
     respond_to do |format|
       if @advertisement.save

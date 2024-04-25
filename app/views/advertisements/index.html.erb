@@ -3,7 +3,7 @@
       <h1>Advertisements</h1>
   </div>
 
-  <%if user_advertiser? %>
+  <%if user_advertiser_or_admin? %>
     <div class="row justify-content-center my-3">
         <div class="container text-center">
           <%= link_to "New advertisement", new_advertisement_path, class:"btn btn-primary", role:"button" %>
@@ -17,7 +17,7 @@
         <div class="card text-center">
           <div class="card-body">
             <%= render advertisement %> 
-            <%if user_advertiser? %>
+            <% if user_advertiser_or_admin? %>
               <%= link_to "Show this advertisement", advertisement, class:"btn btn-outline-secondary", role:"button"  %>
             <% end %>  
           </div>
