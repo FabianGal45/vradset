@@ -1,6 +1,6 @@
 class AdvertisementsController < ApplicationController
   include ApplicationHelper # Calls upone the application_helper.rb file where simple methods have been declared and can be reused here for simplicity.
-  before_action :authenticate_user!, except: [:index ] #only display and show advertisements to users who are not logged in
+  before_action :authenticate_user!, except: [:index, :random_image] #only display and show advertisements to users who are not logged in or request a random image
   before_action :set_advertisement, only: %i[ show edit update destroy ]
   before_action :verify_permission, only: [:show, :edit, :update, :destroy]
 
@@ -14,6 +14,19 @@ class AdvertisementsController < ApplicationController
       @advertisements = Advertisement.all
     end
   end
+
+  def random_image
+    # Select a random ad with a file attached and order it in a random way and select the first one
+    advertisement = Advertisement.with_attached_file.order('RANDOM()').first
+
+    # if there is a file attach redirect to the blob which has a file attached.
+    if advertisement&.file&.attached?
+      redirect_to rails_blob_url(advertisement.file, disposition: "attachment", only_path: true)
+    else
+      head :not_found # else display not found message
+    end
+  end
+
 
   # GET /advertisements/1 or /advertisements/1.json
   def show
