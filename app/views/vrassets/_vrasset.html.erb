@@ -9,6 +9,10 @@
     <%= vrasset.description %>
   </p>
 
+  <% if vrasset.image.attached? %>
+    <%= image_tag vrasset.image, class:"ratio ratio-1x1" %>
+  <% end %>
+
   <% if vrasset.file.attached? %>
     <p>
       <strong>File:</strong>

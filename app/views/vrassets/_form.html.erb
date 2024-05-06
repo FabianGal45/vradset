@@ -23,10 +23,17 @@
         <%= form.text_field :description, class:"form-control" %>
       </div>
 
+      <%# File input - CUAP %>
       <div class="mb-3">
         <%= form.label :file, class: "form-label" %>
-        <%= form.file_field :file, class:"form-control" %>
+        <%= form.file_field :file, class:"form-control", accept:'.cuap' %>
       </div>  
+
+      <%# Image input - https://stackoverflow.com/questions/10896416/how-to-limit-only-images-to-be-uploaded-through-file-field-tag %>
+      <div class="mb-3">
+        <%= form.label :image, class: "form-label"%>
+        <%= form.file_field :image, class:"form-control", accept:'image/*' %> 
+      </div> 
 
       <div class="mb-3">
         <%= form.submit 'Submit', class:"btn btn-success"  %>

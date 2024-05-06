@@ -78,6 +78,6 @@ class VrassetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def vrasset_params
-      params.require(:vrasset).permit(:title, :description, :file)
+      params.require(:vrasset).permit(:title, :description, :file, :image)
     end
 end
