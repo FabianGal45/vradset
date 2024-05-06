@@ -31,8 +31,13 @@
       <div class="mb-3">
         <%= form.label :file, class: "form-label" %>
         <%= form.file_field :file, class:"form-control" %>
-      </div>  
+      </div>
 
+      <div class="mb-2">  
+        <%= form.check_box :terms_and_conditions, required: true %>
+        <%= form.label :terms_and_conditions, "This advertisement is safe for kids and people of all ages." %> 
+      </div>
+        
       <div>
         <%= form.submit 'Submit', class:"btn btn-success" %>
       </div>
