@@ -23,8 +23,12 @@
 
   <%#  Devise - Dropdown for selecting the Role %>
   <div class="field">
+    <!-- Form Label -->
     <%= f.label :role %><br />
-    <%= f.select :role, User.roles.keys.map { |role| [role.titleize, role] }, {}, { required: true } %>
+    <!-- Form select element within the dropdown named Role. -->
+    <!-- User.roles.keys.map creates a hash map where the first value visible e.g. "Admmin", and second is value that gets submitted with the form e.g. "admin" -->
+    <!-- https://stackoverflow.com/questions/24193814/select-enum-from-form-to-set-role -->
+    <%= f.select :role, User.roles.keys.map { |role| [role.titleize, role] }, { required: true } %>
   </div>
 
   <div class="actions">
