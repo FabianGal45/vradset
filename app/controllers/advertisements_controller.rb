@@ -4,6 +4,10 @@ class AdvertisementsController < ApplicationController
   before_action :set_advertisement, only: %i[ show edit update destroy ]
   before_action :verify_permission, only: [:show, :edit, :update, :destroy]
 
+  # Class variable array of adcertisements with attached files(images) from the database that are in a random order.
+  # A class variable is used to keep the state upon each request. Otherwise on each request the variable will reset.
+  @@image_queue = Advertisement.with_attached_file.order('RANDOM()').to_a
+
   # GET /advertisements or /advertisements.json
   def index
     # Only display the advertisements corresponding to the user that created them when logged in.
@@ -16,8 +20,12 @@ class AdvertisementsController < ApplicationController
   end
 
   def get_image
-    # Select a random ad with a file attached and order it in a random way and select the first one
-    advertisement = Advertisement.with_attached_file.order('RANDOM()').first
+    # If the image queue is empty then refill the queue
+    @@image_queue = Advertisement.with_attached_file.order('RANDOM()').to_a if @@image_queue.empty?
+
+    # Removes the first image from the queue whilst holding the first in the advertisement variable
+    # https://www.geeksforgeeks.org/ruby-queue-shift-function/
+    advertisement = @@image_queue.shift
 
     # if there is a file attach redirect to the blob which has a file attached.
     if advertisement&.file&.attached?
