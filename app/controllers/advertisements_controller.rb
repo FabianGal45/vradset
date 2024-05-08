@@ -115,6 +115,6 @@ class AdvertisementsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def advertisement_params
-      params.require(:advertisement).permit(:title, :description, :url, :file)
+      params.require(:advertisement).permit(:title, :description, :url, :file, :check_asai_all, :check_asai_children)
     end
 end

@@ -1,6 +1,6 @@
 <%= form_with(model: advertisement) do |form| %>
   <% if advertisement.errors.any? %>
-    <div style="color: red">
+    <div style="color: red" class="alert alert-danger" role="alert">
       <h2><%= pluralize(advertisement.errors.count, "error") %> prohibited this advertisement from being saved:</h2>
 
       <ul>
@@ -15,27 +15,27 @@
     <div class="col">
       <div class="mb-3">
         <%= form.label :title, class: "form-label" %>
-        <%= form.text_field :title, class:"form-control" %>
+        <%= form.text_field :title, class:"form-control", required: true %>
       </div>
 
       <div class="mb-3">
         <%= form.label :description, class: "form-label" %>
-        <%= form.text_field :description, class:"form-control" %>
+        <%= form.text_field :description, class:"form-control", required: true %>
       </div>
 
       <div class="mb-3">
         <%= form.label :url, class: "form-label" %>
-        <%= form.text_field :url, class:"form-control" %>
+        <%= form.text_field :url, class:"form-control", required: true %>
       </div>
 
       <div class="mb-3">
         <%= form.label :file, class: "form-label" %>
-        <%= form.file_field :file, class:"form-control" %>
+        <%= form.file_field :file, class:"form-control", required: true %>
       </div>
 
       <div class="form-check mb-3">  
-        <%= form.check_box :asai_all, required: true, class: 'form-check-input' %>
-        <%= form.label :asai_all, class: 'form-check-label' do %> 
+        <%= form.check_box :check_asai_all, required: true, class: 'form-check-input' %>
+        <%= form.label :check_asai_all, class: 'form-check-label' do %> 
           This advertisement complies with all code of 
           <%= link_to 'Standards for Advertising and Marketing Communications', 'https://adstandards.ie/asa-code/', target: '_blank' %> 
           (ASAI) in Ireland.
@@ -43,8 +43,8 @@
       </div>
   
       <div class="form-check mb-3">  
-        <%= form.check_box :asai_children, required: true, class: 'form-check-input' %>
-        <%= form.label :asai_children, class: 'form-check-label' do %> 
+        <%= form.check_box :check_asai_children, required: true, class: 'form-check-input' %>
+        <%= form.label :check_asai_children, class: 'form-check-label' do %> 
           This advertisement complies with
           <%= link_to 'Section 7 of the ASAI', 'https://adstandards.ie/code/children/', target: '_blank' %> 
           code for children.
