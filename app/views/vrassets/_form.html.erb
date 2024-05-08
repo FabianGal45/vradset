@@ -1,6 +1,6 @@
 <%= form_with(model: vrasset) do |form| %>
   <% if vrasset.errors.any? %>
-    <div style="color: red">
+    <div style="color: red" class="alert alert-danger" role="alert">
       <h2><%= pluralize(vrasset.errors.count, "error") %> prohibited this vrasset from being saved:</h2>
 
       <ul>
@@ -15,12 +15,12 @@
     <div class="col">
       <div class="mb-3">
         <%= form.label :title, class: "form-label" %>
-        <%= form.text_field :title, class:"form-control" %>
+        <%= form.text_field :title, class:"form-control", required: true %>
       </div>
 
       <div class="mb-3">
         <%= form.label :description, class: "form-label" %>
-        <%= form.text_field :description, class:"form-control" %>
+        <%= form.text_field :description, class:"form-control", required: true %>
       </div>
 
       <%# File input - CUAP %>
@@ -32,7 +32,7 @@
       <%# Image input - https://stackoverflow.com/questions/10896416/how-to-limit-only-images-to-be-uploaded-through-file-field-tag %>
       <div class="mb-3">
         <%= form.label :image, class: "form-label"%>
-        <%= form.file_field :image, class:"form-control", accept:'image/*' %> 
+        <%= form.file_field :image, class:"form-control", accept:'image/*'%> 
       </div> 
 
       <div class="mb-3">
