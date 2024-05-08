@@ -33,11 +33,24 @@
         <%= form.file_field :file, class:"form-control" %>
       </div>
 
-      <div class="mb-2">  
-        <%= form.check_box :terms_and_conditions, required: true %>
-        <%= form.label :terms_and_conditions, "This advertisement is safe for kids and people of all ages." %> 
+      <div class="form-check mb-3">  
+        <%= form.check_box :asai_all, required: true, class: 'form-check-input' %>
+        <%= form.label :asai_all, class: 'form-check-label' do %> 
+          This advertisement complies with all code of 
+          <%= link_to 'Standards for Advertising and Marketing Communications', 'https://adstandards.ie/asa-code/', target: '_blank' %> 
+          (ASAI) in Ireland.
+        <% end %>
       </div>
-        
+  
+      <div class="form-check mb-3">  
+        <%= form.check_box :asai_children, required: true, class: 'form-check-input' %>
+        <%= form.label :asai_children, class: 'form-check-label' do %> 
+          This advertisement complies with
+          <%= link_to 'Section 7 of the ASAI', 'https://adstandards.ie/code/children/', target: '_blank' %> 
+          code for children.
+        <% end %>
+      </div>
+      
       <div>
         <%= form.submit 'Submit', class:"btn btn-success" %>
       </div>
