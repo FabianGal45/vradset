@@ -18,11 +18,17 @@
 
     <%#Devise Notice and alert%>
     <% if notice %>
-      <p class="notice alert alert-success text-center"><%= notice %></p>
+      <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+        <%= notice %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
     <% end %>
     
     <% if alert %>
-      <p class="alert alert alert-warning text-center"><%= alert %></p>
+      <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+        <%= alert %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
     <% end %>
   
 
