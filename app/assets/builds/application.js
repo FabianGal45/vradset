@@ -1,4 +1,7 @@
 (() => {
 })();
 //# sourceMappingURL=/assets/application.js.map
-$(".alert" ).fadeOut(3000);
+
+// These are required to allow the delete method to work from a link_to tag
+import Rails from '@rails/ujs';
+Rails.start();

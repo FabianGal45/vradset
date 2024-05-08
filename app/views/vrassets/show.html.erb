@@ -2,13 +2,15 @@
   <div class="row justify-content-center my-4">
     <div class="col-lg-4 col-md-8">
       <div class="card text-center">
-        <%= render @vrasset %>
+        <div class="card-body">
+          <%= render @vrasset %>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="btn-group mb-5" role="group">
-    <%= button_to "Delete", @vrasset, method: :delete, class:"btn btn-danger", type:"button" %>
+    <%= link_to "Delete", @vrasset, method: :delete, class:"btn btn-danger", type:"button" %>
     <%= link_to "Edit", edit_vrasset_path(@vrasset), class:"btn btn-warning", type:"button" %> 
     <%= link_to "Back", vrassets_path, class:"btn btn-secondary", type:"button" %>
   </div> 

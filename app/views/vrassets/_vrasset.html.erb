@@ -15,12 +15,11 @@
 
   <% if vrasset.file.attached? %>
     <p>
-      <strong>File:</strong>
       <%# If the user is a developer then allow them to download the file otherwise restrict the download view %>
       <% if user_developer_or_admin? %>
-        <%= link_to vrasset.file.filename, rails_blob_path(vrasset.file, disposition: 'attachment') %>
-      <% else %>
-        <%= vrasset.file.filename %>
+        <%= link_to rails_blob_path(vrasset.file, disposition: 'attachment'), class: "mt-3 btn btn-success" do  %>
+          Download
+        <% end %>
       <% end %>
     </p>
   <% end %>

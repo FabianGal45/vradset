@@ -19,12 +19,12 @@
             <%= render vrasset %>
 
             <%if user_admin? %>
-              <%= link_to "Show this vrasset", vrasset %>
+              <%= link_to "Show this vrasset", vrasset, class:"btn btn-outline-secondary", role:"button" %>
             <% end %>
 
             <% if user_developer? %>
               <%# Functionality to be added later for this %>
-              <a href="">Select and start setup</a> 
+              <!-- <a href="">Select and start setup</a>  -->
             <% end %>
           </div>
         </div>
