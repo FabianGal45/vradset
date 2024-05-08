@@ -1,41 +1,45 @@
 <nav class="navbar navbar-expand-sm bg-body-tertiary">
   <div class="container-fluid">
+    <!-- Brand -->
     <%= link_to "VR-Adset", root_path, class: "navbar-brand"%>
+
+    <!-- Toggler and collapse button -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
+    <!-- Links -->
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <%= link_to "Advertisements", advertisements_path, 
-            class: ("nav-link #{'active' if current_page?(advertisements_path)}"), 
-            "aria-current" => ("page" if current_page?(advertisements_path)) 
-        %>
+      <!-- Left hand side -->
+      <ul class="navbar-nav me-auto mb-lg-0">
+        <li>
+          <%= link_to "Advertisements", advertisements_path, class: ("nav-link #{'active' if current_page?(advertisements_path)}"), "aria-current" => ("page" if current_page?(advertisements_path)) %>
+        </li>
+        <li>
+          <%= link_to "Assets", vrassets_path, class: ("nav-link #{'active' if current_page?(vrassets_path)}"), "aria-current" => ("page" if current_page?(vrassets_path)) %>
+        </li>
+      </ul>
 
-        <%= link_to "Assets", vrassets_path, 
-            class: ("nav-link #{'active' if current_page?(vrassets_path)}"), 
-            "aria-current" => ("page" if current_page?(vrassets_path)) 
-        %>
-
+      <!-- Right hand side -->
+      <ul class="navbar-nav">
         <%# If the user is signed in %>
         <% if user_signed_in? %>
           <%# Display the Edit and Log out links %>
-          <%= link_to "Edit User", edit_user_registration_path, 
-            class: ("nav-link #{'active' if current_page?(edit_user_registration_path)}"), 
-            "aria-current" => ("page" if current_page?(edit_user_registration_path)) 
-          %>
+          <li>
+            <%= link_to "Edit User", edit_user_registration_path, class: ("nav-link #{'active' if current_page?(edit_user_registration_path)}"), "aria-current" => ("page" if current_page?(edit_user_registration_path)) %>
+          </li>
 
-          <%= button_to "Log Out", destroy_user_session_path, method: :delete, 
-            class: ("nav-link #{'active' if current_page?(edit_user_registration_path)}"), 
-            "aria-current" => ("page" if current_page?(edit_user_registration_path))
-          %>
+          <li>
+            <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: ("nav-link #{'active' if current_page?(edit_user_registration_path)}"), "aria-current" => ("page" if current_page?(edit_user_registration_path))%>
+          </li>
         <% else %>
           <%# Display the Log In link %>
-          <%= link_to "Log In", new_user_session_path, 
-            class: ("nav-link #{'active' if current_page?(new_user_session_path)}"), 
-            "aria-current" => ("page" if current_page?(new_user_session_path))
-          %>
+          <li>
+            <%= link_to "Log In", new_user_session_path, class: ("nav-link #{'active' if current_page?(new_user_session_path)}"), "aria-current" => ("page" if current_page?(new_user_session_path))%>
+          </li>
         <% end %>
-      </div>
-    </div>
+      </ul>
+    </div>  
+    
   </div>
 </nav>
