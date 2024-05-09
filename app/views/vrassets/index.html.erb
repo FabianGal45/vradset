@@ -15,17 +15,24 @@
   <div id="vrassets" class="row justify-content-center row-cols-1 g-3 row-cols-md-2 row-cols-xl-3">
     <% @vrassets.each do |vrasset| %>
       <div class="col">
-        <div class="card text-center">
+        <div class="card h-100 text-center">
           <div class="card-body">
             <%= render vrasset %>
-
+          </div>
+          <div class="card-footer bg-transparent border-top-0 d-grid gap-3">
+            <!-- Download button -->
+            <% if vrasset.file.attached? %>
+              <%# If the user is a developer then allow them to download the file otherwise restrict the download view %>
+              <% if user_developer_or_admin? %>
+                <%= link_to rails_blob_path(vrasset.file, disposition: 'attachment'), class: "btn btn-success" do  %>
+                  Download
+                <% end %>
+              <% end %>
+            <% end %>
+  
+            <!-- Show asset button -->
             <%if user_admin? %>
               <%= link_to "Show this vrasset", vrasset, class:"btn btn-outline-secondary", role:"button" %>
-            <% end %>
-
-            <% if user_developer? %>
-              <%# Functionality to be added later for this %>
-              <!-- <a href="">Select and start setup</a>  -->
             <% end %>
           </div>
         </div>

@@ -10,17 +10,6 @@
   </p>
 
   <% if vrasset.image.attached? %>
-    <%= image_tag vrasset.image, class:"ratio ratio-1x1" %>
-  <% end %>
-
-  <% if vrasset.file.attached? %>
-    <p>
-      <%# If the user is a developer then allow them to download the file otherwise restrict the download view %>
-      <% if user_developer_or_admin? %>
-        <%= link_to rails_blob_path(vrasset.file, disposition: 'attachment'), class: "mt-3 btn btn-success" do  %>
-          Download
-        <% end %>
-      <% end %>
-    </p>
+    <%= image_tag vrasset.image, class:"custom-image-manipulation"%>
   <% end %>
 </div>

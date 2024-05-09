@@ -16,7 +16,7 @@
   <% if advertisement.file.attached? %>
     <%# if the attached file is an image, display the image%>
     <% if advertisement.file.image? %>
-      <%= image_tag(advertisement.file , class:"ratio ratio-1x1")%>
+      <%= image_tag(advertisement.file, class:"custom-image-manipulation")%>
     <%end%>
   <% end %>
 

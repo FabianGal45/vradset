@@ -14,11 +14,13 @@
   <div id="advertisements" class="row justify-content-center row-cols-1 g-3 row-cols-md-2 row-cols-xl-3">
     <% @advertisements.each do |advertisement| %>
       <div class="col">
-        <div class="card text-center">
+        <div class="card h-100 text-center">
           <div class="card-body">
             <%= render advertisement %> 
+          </div>
+          <div class="card-footer bg-transparent border-top-0 d-grid">
             <% if user_advertiser_or_admin? %>
-              <%= link_to "Show this advertisement", advertisement, class:"mt-3 btn btn-outline-secondary", role:"button"  %>
+              <%= link_to "Show this advertisement", advertisement, class:"btn btn-outline-secondary", role:"button"  %>
             <% end %>  
           </div>
         </div>
