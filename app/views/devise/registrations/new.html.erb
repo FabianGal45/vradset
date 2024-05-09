@@ -1,48 +1,53 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <%#  Devise - Dropdown for selecting the Role %>
-  <div class="field">
-    <!-- Form Label -->
-    <%= f.label :role %><br />
-
-    <!-- If there are no users in the database, show "Admin" as an option in the dropdown -->
-    <% if User.count == 0 %>
-      <!-- Form select element within the dropdown named Role. -->
-      <!-- User.roles.keys.map creates a hash map where the first value visible e.g. "Admmin", and second is value that gets submitted with the form e.g. "admin" -->
-      <!-- https://stackoverflow.com/questions/24193814/select-enum-from-form-to-set-role -->
-      <!-- https://api.rubyonrails.org/classes/Hash.html#method-i-assert_valid_keys -->
-      <%= f.select :role, User.roles.slice(:admin).keys.map { |role| [role.titleize, role] }, { required: true } %>
-    <% else %>
-      <!-- Remove the "Admin" from the dropdown -->
-      <!-- https://stackoverflow.com/questions/6227600/how-to-remove-a-key-from-hash-and-get-the-remaining-hash-in-ruby-rails -->
-      <%= f.select :role, User.roles.except(:admin).keys.map { |role| [role.titleize, role] }, { required: true } %>
-    <% end %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<div class="container text-center">
+  <h2>Sign up</h2>
+  <div class="row justify-content-center">
+    <div class="col col-md-8 col-xl-6 col-xxl-4">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+      
+        <div class="field mb-3">
+          <%= f.label :email, class: "form-label" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+        </div>
+      
+        <div class="field mb-3">
+          <%= f.label :password, class: "form-label" %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
+        </div>
+      
+        <div class="field mb-3">
+          <%= f.label :password_confirmation, class: "form-label" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+        </div>
+      
+        <%#  Devise - Dropdown for selecting the Role %>
+        <div class="field mb-3">
+          <!-- Form Label -->
+          <%= f.label :role, class: "form-label" %><br />
+      
+          <!-- If there are no users in the database, show "Admin" as an option in the dropdown -->
+          <% if User.count == 0 %>
+            <!-- Form select element within the dropdown named Role. -->
+            <!-- User.roles.keys.map creates a hash map where the first value visible e.g. "Admmin", and second is value that gets submitted with the form e.g. "admin" -->
+            <!-- https://stackoverflow.com/questions/24193814/select-enum-from-form-to-set-role -->
+            <!-- https://api.rubyonrails.org/classes/Hash.html#method-i-assert_valid_keys -->
+            <%= f.select :role, User.roles.slice(:admin).keys.map { |role| [role.titleize, role] }, { required: true } %>
+          <% else %>
+            <!-- Remove the "Admin" from the dropdown -->
+            <!-- https://stackoverflow.com/questions/6227600/how-to-remove-a-key-from-hash-and-get-the-remaining-hash-in-ruby-rails -->
+            <%= f.select :role, User.roles.except(:admin).keys.map { |role| [role.titleize, role] }, { required: true }, class:"form-select" %>
+          <% end %>
+        </div>
+      
+        <div class="actions mb-3">
+          <%= f.submit "Sign up", class:"btn btn-primary" %>
+        </div>
+      <% end %>
+      
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>  
+</div>
