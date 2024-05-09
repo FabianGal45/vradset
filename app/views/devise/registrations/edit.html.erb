@@ -1,7 +1,7 @@
 <div class="container text-center">
   <h2>Edit <%= resource_name.to_s.humanize %></h2>
-  <div class="row justify-content-center">
-    <div class="col col-md-8 col-xl-6 col-xxl-4">
+  <div class="row justify-content-center row-cols-1 g-3 row-cols-md-2 row-cols-xl-3">
+    <div class="col">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
       
@@ -44,7 +44,7 @@
         <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class:"btn btn-danger" %>
       </div>
       
-      <%= link_to "Back", :back %>
+      <%= link_to "Back", :back, class:"btn btn-outline-secondary mb-3" %>
     </div>
   </div>
 </div>
