@@ -1,2 +1,119 @@
-<h1>Tutorial Page</h1>
-<p>How to set up a VR asset.</p>
+<div class="container">
+    <div class="row text-center">
+        <h1>Tutorial</h1>
+    </div>
+    <div class="row">
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Introduction to VR-Adset
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <p>
+                        <strong>VR-Adset</strong> offers advertisers the opportunity to reach a new audience by showcasing their ads within a virtual reality (VR) environment. 
+                        Achieved with the use of pre-built 3D objects like billboards and TVs, the platform simplifies the current available process of advertising. 
+                        Currently, most companies reach out to agencies who build the entire VR environment for the use of only one ad campaign. 
+                        This approach easily becomes costly due to developer fees and is time-consuming.
+                    </p>
+                    <p>
+                        Simplifying the available processes of advertising, VR-Adset creates a mutually beneficial setup not only for advertisers and developers but also for the VR industry. 
+                        It aims to provide developers with an alternative source of income, whilst being easy to use, reaching new audiences, and offering constant availability with wider adoption by developers.
+                    </p>
+                        
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Tutorial for Advertisers
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <p>You are in luck! </p>
+                    <p>All you have to do is Sign up, and upload an <%= link_to "advertisement on this platform", advertisements_path %> and the Developer will do the rest.</p>
+                    <p>Enjoy the savings on development and get ready to reach a new audience.</p>
+        
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Tutorial for Developers
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="mb-5">
+                        <h1>How to use VR-Adset with Connecter and Unreal Engine</h1>
+                    </div>
+                
+                    <div class="mb-5">
+                        <h2>Required Software:</h2>
+                        <ul>
+                            <li><%= link_to 'Connecter', 'https://www.designconnected.com/connecter/desktop-app', target: '_blank' %></li>
+                            <li><%= link_to 'Unreal Engine', 'https://www.unrealengine.com/en-US/download', target: '_blank' %></li>
+                        </ul>
+                    </div>
+                
+                    <div class="mb-5">
+                        <h2>Introduction to Connecter:</h2>
+                        <p>If you're new to Connecter, start by watching this <%= link_to '6-minute introductory video', 'https://youtu.be/FsYbiQ-xsUU?si=k3uNY6-02tHdrSzt', target: '_blank' %>. It covers the basics and setup of required plugins.</p>
+                    </div>
+                
+                    <div class="mb-5">
+                        <h2>Tutorial Steps:</h2>
+                        <ol>
+                            <li>
+                                <strong>Prepare Your File:</strong>
+                                <p><%= link_to "Sign Up", new_user_registration_path %> or <%= link_to "Log in", new_user_session_path %></p>
+                                <p>Download an asset and save the <code>.cuap</code> file to a directory on your computer, such as <code>../desktop/VR-Adset</code>.</p>
+                            </li>
+                            <li>
+                                <strong>Set Up Connecter:</strong>
+                                <p>Open the Connecter app.</p>
+                                <p>Navigate to the 'Folders' section on the left hand side, and click the "+" icon to add a custom folder.</p>
+                                <%= image_tag 'Add_Custom_Folder.png', alt: 'Add custom folder icon.', class:"img-fluid mb-3" %>
+                                <p>Select the directory where you saved the <code>.cuap</code> file. Your file should now appear in Connecter. Adding more assets to this directory will automatically update Connecter.</p>
+                            </li>
+                            <li>
+                                <strong>Prepare Unreal Engine:</strong>
+                                <p>Open Unreal Engine.</p>
+                                <p>Either open an existing VR project or create a new one. To create a new project, select 'Games', 'Virtual Reality', then press 'Create'.</p>
+                            </li>
+                            <li>
+                                <strong>Import Assets into Unreal Engine:</strong>
+                                <p>Go back to Connecter, right-click the asset you want to use, and select "Load in Opened UE Project".</p>
+                                <%= image_tag 'Load_in_Opened_UE_Project.png', alt: 'Showcase of the Load in Opened UE Project option from Connecter.', class:"img-fluid mb-3" %>
+                                <p>In Unreal Engine, open the Content Drawer and locate the "VR-Adset" folder.</p>
+                                <p>Navigate to "VR-Adset/Blueprints/" and open the asset’s folder.</p>
+                                <%= image_tag 'Poster_Asset_Directory.png', alt: 'The directory of the asset within Unreal Engine, Content Drawer.', class:"img-fluid mb-3" %>
+                                <p>Drag and drop the Blueprint asset from this folder into your Unreal Engine environment.</p>
+                                <%= image_tag 'Drag_and_Drop.png', alt: 'Showcase of asset being dragged and dropped within the VR environment.', class:"img-fluid mb-3" %>
+                            </li>
+                            <li>
+                                <strong>Run Your Project:</strong>
+                                <p>Launch the simulation or run it as a standalone game. Your asset with the advertisement should now display correctly in the environment.</p>
+                                <%= image_tag 'Advertisement_Success.png', alt: 'VR asset has successfully grabbed and displayed an advertisement within the VR environment.', class:"img-fluid mb-3" %>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+        
+        
+    </div>
+</div>   

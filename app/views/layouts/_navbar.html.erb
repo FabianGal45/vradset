@@ -18,6 +18,9 @@
         <li>
           <%= link_to "Assets", vrassets_path, class: ("nav-link #{'active' if current_page?(vrassets_path)}"), "aria-current" => ("page" if current_page?(vrassets_path)) %>
         </li>
+        <li>
+          <%= link_to "Tutorial", tutorial_path, class: ("nav-link #{'active' if current_page?(tutorial_path)}"), "aria-current" => ("page" if current_page?(vrassets_path))  %>
+        </li>
       </ul>
 
       <!-- Right hand side -->
