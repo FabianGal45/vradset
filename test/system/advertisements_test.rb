@@ -1,5 +1,5 @@
 require "application_system_test_case"
-
+# Documentation: https://rubydoc.info/github/jnicklas/capybara/Capybara/Node/Actions
 class AdvertisementsTest < ApplicationSystemTestCase
   setup do
     @user = users(:admin) #grabs the admin from the users fixtures
@@ -19,6 +19,9 @@ class AdvertisementsTest < ApplicationSystemTestCase
     fill_in "Description", with: @advertisement.description
     fill_in "Title", with: @advertisement.title
     fill_in "Url", with: @advertisement.url
+    page.attach_file('advertisement_file', 'test\fixtures\files\Advertisement_test.png')
+    check('advertisement_check_asai_all')
+    check('advertisement_check_asai_children')
     click_on "Submit"
 
     assert_text "Advertisement was successfully created"
@@ -32,6 +35,9 @@ class AdvertisementsTest < ApplicationSystemTestCase
     fill_in "Description", with: @advertisement.description
     fill_in "Title", with: @advertisement.title
     fill_in "Url", with: @advertisement.url
+    page.attach_file('advertisement_file', 'test\fixtures\files\Advertisement_test.png')
+    check('advertisement_check_asai_all')
+    check('advertisement_check_asai_children')
     click_on "Submit"
 
     assert_text "Advertisement was successfully updated"

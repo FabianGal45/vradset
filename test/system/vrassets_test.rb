@@ -9,7 +9,7 @@ class VrassetsTest < ApplicationSystemTestCase
 
   test "visiting the index" do
     visit vrassets_url
-    assert_selector "h1", text: "Vrassets"
+    assert_selector "h1", text: "VR Assets"
   end
 
   test "should create vrasset" do
@@ -18,6 +18,8 @@ class VrassetsTest < ApplicationSystemTestCase
 
     fill_in "Description", with: @vrasset.description
     fill_in "Title", with: @vrasset.title
+    page.attach_file('vrasset_file', 'test\fixtures\files\BP_Poster_01.cuap')
+    page.attach_file('vrasset_image', 'test\fixtures\files\BP_Poster_01_Preview.png')
     click_on "Submit"
 
     assert_text "Vrasset was successfully created"
@@ -30,6 +32,8 @@ class VrassetsTest < ApplicationSystemTestCase
 
     fill_in "Description", with: @vrasset.description
     fill_in "Title", with: @vrasset.title
+    page.attach_file('vrasset_file', 'test\fixtures\files\BP_Poster_01.cuap')
+    page.attach_file('vrasset_image', 'test\fixtures\files\BP_Poster_01_Preview.png')
     click_on "Submit"
 
     assert_text "Vrasset was successfully updated"
