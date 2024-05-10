@@ -8,7 +8,7 @@ Simplifying the available processes of advertising, VR-Adset creates a mutually 
 
 You are in luck!
 
-All you have to do is Sign up to https://vr-adset.com to upload an advertisement and the Developer will do the rest.
+All you have to do is Sign up to <https://vr-adset.com> to upload an advertisement and the Developer will do the rest.
 
 Enjoy the savings on development and get ready to reach a new audience.
 
@@ -29,7 +29,7 @@ If you're new to Connecter, start by watching this 6-minute introductory video. 
 
 #### 1. Prepare Your File
 
-Sign Up or Log in to https://vr-adset.com
+Sign Up or Log in to <https://vr-adset.com>
 
 Download an asset and save the .cuap file to a directory on your computer, such as ../desktop/VR-Adset.
 
@@ -70,3 +70,4 @@ Showcase of asset being dragged and dropped within the VR environment.
 
 Launch the simulation or run it as a standalone game. Your asset with the advertisement should now display correctly in the environment.
 ![Image](./app/assets/images/Advertisement_Success.png)
+[EOF]
