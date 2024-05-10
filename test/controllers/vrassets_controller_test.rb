@@ -25,7 +25,12 @@ class VrassetsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create vrasset" do
     assert_difference("Vrasset.count") do
-      post vrassets_url, params: { vrasset: { description: @vrasset.description, title: @vrasset.title } }
+      post vrassets_url, params: { vrasset: {
+        description: @vrasset.description,
+        title: @vrasset.title,
+        file: fixture_file_upload("BP_Poster_01.cuap", ".cuap"),
+        image: fixture_file_upload("BP_Poster_01_Preview.png", "image/png")
+      } }
     end
 
     assert_redirected_to vrasset_url(Vrasset.last)
@@ -42,7 +47,12 @@ class VrassetsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update vrasset" do
-    patch vrasset_url(@vrasset), params: { vrasset: { description: @vrasset.description, title: @vrasset.title } }
+    patch vrasset_url(@vrasset), params: { vrasset: {
+      description: @vrasset.description,
+      title: @vrasset.title,
+      file: fixture_file_upload("BP_Poster_01.cuap", ".cuap"),
+      image: fixture_file_upload("BP_Poster_01_Preview.png", "image/png")
+    } }
     assert_redirected_to vrasset_url(@vrasset)
   end
 
