@@ -11,7 +11,7 @@ class Advertisement < ApplicationRecord
     #Checks that the image type uploaded is being supported by the application (JPEG & PNG)
     validate :correct_image_type
 
-      # UNIT TEST
+    # Check if the image uploaded is either a JPEG or PNG format.
     def correct_image_type
         if file.attached? && !file.content_type.in?(%w(image/jpeg image/png))
             errors.add(:file, 'must be a JPEG, OR PNG')
