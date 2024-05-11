@@ -2,8 +2,15 @@ require "test_helper"
 
 class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = users(:admin) #grabs the admin from the users fixtures
-    sign_in @user #This makes use of the Devise helper to sign in the user.
+    # Graps the users from the users fixtures
+    @admin = users(:admin)
+    @advertiser = users(:advertiser)
+    @developer = users(:developer)
+
+    # Signs in the admin to allow for general tests to pass. Where user needs specified sign_in method will be used.
+    sign_in @admin #This makes use of the Devise helper to sign in the user.
+
+    # Prepares the advertisemetns with the values from the fixtures
     @advertisement = advertisements(:one)
     @advertisementTwo = advertisements(:two)
 
@@ -14,7 +21,7 @@ class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "user is signed in" do
-    sign_in @user
+    sign_in @admin
     get root_url
     assert_response :success
   end
@@ -87,29 +94,30 @@ class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
   end
 
 
-  # This checks :verify_permission
-  # When the user is a developer they should not be able to access the following.
-  #
+
+  # This checks :authenticate_user!
+  # When the user is not signed in they should not be able to access the following
+  # with exception to index and get_image
   test "should deny access to show advertisements" do
-    sign_out @user
+    sign_out @admin
     get advertisement_url(@advertisement)
     assert_redirected_to new_user_session_path
   end
 
   test "should deny access to new advertisements" do
-    sign_out @user
+    sign_out @admin
     get new_advertisement_url
     assert_redirected_to new_user_session_path
   end
 
   test "should deny access to edit advertisements" do
-    sign_out @user
+    sign_out @admin
     get edit_advertisement_url(@advertisement)
     assert_redirected_to new_user_session_path
   end
 
   test "should deny access to create advertisements" do
-    sign_out @user
+    sign_out @admin
     post advertisements_url, params: { advertisement: {
       description: @advertisement.description,
       title: @advertisement.title,
@@ -122,7 +130,7 @@ class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should deny access to update advertisements" do
-    sign_out @user
+    sign_out @admin
     patch advertisement_url(@advertisement), params: { advertisement: {
       description: @advertisement.description,
       title: @advertisement.title,
@@ -135,37 +143,38 @@ class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should deny access to delete advertisements" do
-    sign_out @user
+    sign_out @admin
     delete advertisement_url(@advertisement)
     assert_redirected_to new_user_session_path
   end
 
-  # This checks :authenticate_user!
-  # When the user is not signed in they should not be able to access the following
-  # with exception to index and get_image
+
+  # This checks :verify_permission
+  # When the user is a developer
+  # they should not be able to access the following.
   test "should deny developer access to show advertisements" do
-    sign_in users(:developer)
+    sign_in @developer
     get advertisement_url(@advertisement)
     assert_redirected_to advertisements_path
     assert_equal "You are not authorized to perform this action.", flash[:alert]
   end
 
   test "should deny developer access to new advertisements" do
-    sign_in users(:developer)
+    sign_in @developer
     get new_advertisement_url
     assert_redirected_to advertisements_path
     assert_equal "You are not authorized to perform this action.", flash[:alert]
   end
 
   test "should deny developer access to edit advertisements" do
-    sign_in users(:developer)
+    sign_in @developer
     get edit_advertisement_url(@advertisement)
     assert_redirected_to advertisements_path
     assert_equal "You are not authorized to perform this action.", flash[:alert]
   end
 
   test "should deny developer access to create advertisements" do
-    sign_in users(:developer)
+    sign_in @developer
     post advertisements_url, params: { advertisement: {
       description: @advertisement.description,
       title: @advertisement.title,
@@ -179,7 +188,7 @@ class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should deny developer access to update advertisements" do
-    sign_in users(:developer)
+    sign_in @developer
     patch advertisement_url(@advertisement), params: { advertisement: {
       description: @advertisement.description,
       title: @advertisement.title,
@@ -193,7 +202,7 @@ class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should deny developer access to delete advertisements" do
-    sign_in users(:developer)
+    sign_in @developer
     delete advertisement_url(@advertisement)
     assert_redirected_to advertisements_path
     assert_equal "You are not authorized to perform this action.", flash[:alert]

@@ -110,7 +110,7 @@ class AdvertisementsController < ApplicationController
 
     # INTEGRATION TEST
     def verify_permission
-      unless current_user && (current_user.advertiser? || current_user.admin?)
+      unless current_user.advertiser? || current_user.admin?
         redirect_to advertisements_path, alert: "You are not authorized to perform this action."
       end
     end
