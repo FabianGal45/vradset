@@ -19,6 +19,7 @@ class AdvertisementsController < ApplicationController
     end
   end
 
+  # GET /get_image - Used to request an image from Unreal Engine
   def get_image
     # If the image queue is empty then refill the queue
     @@image_queue = Advertisement.with_attached_file.order('RANDOM()').to_a if @@image_queue.empty?
@@ -28,6 +29,7 @@ class AdvertisementsController < ApplicationController
     advertisement = @@image_queue.shift
 
     # if there is a file attach redirect to the blob which has a file attached.
+    # https://stackoverflow.com/questions/50424251/how-can-i-get-url-of-my-attachment-stored-in-active-storage-in-my-rails-controll
     if advertisement&.file&.attached?
       redirect_to rails_blob_url(advertisement.file, disposition: "attachment", only_path: true)
     else
@@ -106,6 +108,7 @@ class AdvertisementsController < ApplicationController
       @advertisement = Advertisement.find(params[:id])
     end
 
+    # INTEGRATION TEST
     def verify_permission
       unless current_user && (current_user.advertiser? || current_user.admin?)
         redirect_to advertisements_path, alert: "You are not authorized to perform this action."

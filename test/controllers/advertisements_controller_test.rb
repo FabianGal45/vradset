@@ -5,6 +5,12 @@ class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
     @user = users(:admin) #grabs the admin from the users fixtures
     sign_in @user #This makes use of the Devise helper to sign in the user.
     @advertisement = advertisements(:one)
+    @advertisementTwo = advertisements(:two)
+
+    # As a file cannot be added within the fixtures due to the yml format, I am adding it here.
+    @file = fixture_file_upload("Advertisement_test.png", "image/png")
+    @advertisement.file.attach(@file)
+    @advertisementTwo.file.attach(@file)
   end
 
   test "user is signed in" do
@@ -27,10 +33,10 @@ class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
     # The advertisement count should increase
     assert_difference("Advertisement.count") do
       post advertisements_url, params: { advertisement: {
-          description: "test",
-          title: "test",
-          url: "test",
-          file: fixture_file_upload("Advertisement_test.png", "image/png"),
+          description: @advertisement.description,
+          title: @advertisement.title,
+          url: @advertisement.url,
+          file: @file, # This requires the fixture_file_upload method to pass.
           check_asai_all: '1',
           check_asai_children: '1'
         }}
@@ -45,6 +51,16 @@ class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "Should get an image" do
+    get get_image_url
+    # Checking for the blob_url below will give a false positive where it will compare an image form a different advertisement.
+    # rails_blob_url(@advertisement.file, disposition: "attachment", only_path: true)
+    # Considering I care that there is an image, I had modified it to the assertion below:
+    # https://api.rubyonrails.org/classes/ActionDispatch/Assertions/ResponseAssertions.html
+    assert_redirected_to %r(\Ahttp://www.example.com/rails/active_storage/blobs/redirect/)
+    assert_response :found
+  end
+
   test "should get edit" do
     get edit_advertisement_url(@advertisement)
     assert_response :success
@@ -55,7 +71,7 @@ class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
       description: @advertisement.description,
       title: @advertisement.title,
       url: @advertisement.url,
-      file: fixture_file_upload("Advertisement_test.png", "image/png"),
+      file: @file,
       check_asai_all: '1',
       check_asai_children: '1'
     } }

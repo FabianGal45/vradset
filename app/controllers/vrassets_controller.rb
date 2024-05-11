@@ -66,12 +66,14 @@ class VrassetsController < ApplicationController
       @vrasset = Vrasset.find(params[:id])
     end
 
+    # INTEGRATION TEST
     def verify_permission
       unless current_user && (current_user.developer? || current_user.admin?)
         redirect_to vrassets_path, alert: "You are not authorized to perform this action."
       end
     end
 
+    # INTEGRATION TEST
     def verify_admin
       redirect_to vrassets_path, alert: "You are not authorized to perform this action." unless current_user&.admin?
     end
