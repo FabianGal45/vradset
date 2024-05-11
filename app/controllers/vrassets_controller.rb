@@ -1,8 +1,7 @@
 class VrassetsController < ApplicationController
   before_action :authenticate_user!, except: [ :index ] # Display VR assets to users who are not logged in.
   before_action :set_vrasset, only: %i[ show edit update destroy ] # Method used for the CRUD function of the VR asset.
-  before_action :verify_admin, only: [:new, :create] # Only admins should be able to create VR assets
-  before_action :verify_permission, only: [:show, :new, :edit, :create, :update, :destroy] # Method used to verify if the user is logged in and a Developer to allow them to view, edit, update and delete a VR asset.
+  before_action :verify_user_is_admin, only: [:show, :new, :edit, :create, :update, :destroy] # Only admins should be able to create/update/interract with vrassets
 
   # GET /vrassets or /vrassets.json
   def index
@@ -66,16 +65,11 @@ class VrassetsController < ApplicationController
       @vrasset = Vrasset.find(params[:id])
     end
 
-    # INTEGRATION TEST
-    def verify_permission
+    # Veify that the user is admin
+    def verify_user_is_admin
       unless current_user.admin?
         redirect_to vrassets_path, alert: "You are not authorized to perform this action."
       end
-    end
-
-    # INTEGRATION TEST
-    def verify_admin
-      redirect_to vrassets_path, alert: "You are not authorized to perform this action." unless current_user&.admin?
     end
 
     # Only allow a list of trusted parameters through.
