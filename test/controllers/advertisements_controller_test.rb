@@ -85,4 +85,118 @@ class AdvertisementsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to advertisements_url
   end
+
+
+  # This checks :verify_permission
+  # When the user is a developer they should not be able to access the following.
+  #
+  test "should deny access to show advertisements" do
+    sign_out @user
+    get advertisement_url(@advertisement)
+    assert_redirected_to new_user_session_path
+  end
+
+  test "should deny access to new advertisements" do
+    sign_out @user
+    get new_advertisement_url
+    assert_redirected_to new_user_session_path
+  end
+
+  test "should deny access to edit advertisements" do
+    sign_out @user
+    get edit_advertisement_url(@advertisement)
+    assert_redirected_to new_user_session_path
+  end
+
+  test "should deny access to create advertisements" do
+    sign_out @user
+    post advertisements_url, params: { advertisement: {
+      description: @advertisement.description,
+      title: @advertisement.title,
+      url: @advertisement.url,
+      file: @file, # This requires the fixture_file_upload method to pass.
+      check_asai_all: '1',
+      check_asai_children: '1'
+    }}
+    assert_redirected_to new_user_session_path
+  end
+
+  test "should deny access to update advertisements" do
+    sign_out @user
+    patch advertisement_url(@advertisement), params: { advertisement: {
+      description: @advertisement.description,
+      title: @advertisement.title,
+      url: @advertisement.url,
+      file: @file,
+      check_asai_all: '1',
+      check_asai_children: '1'
+    } }
+    assert_redirected_to new_user_session_path
+  end
+
+  test "should deny access to delete advertisements" do
+    sign_out @user
+    delete advertisement_url(@advertisement)
+    assert_redirected_to new_user_session_path
+  end
+
+  # This checks :authenticate_user!
+  # When the user is not signed in they should not be able to access the following
+  # with exception to index and get_image
+  test "should deny developer access to show advertisements" do
+    sign_in users(:developer)
+    get advertisement_url(@advertisement)
+    assert_redirected_to advertisements_path
+    assert_equal "You are not authorized to perform this action.", flash[:alert]
+  end
+
+  test "should deny developer access to new advertisements" do
+    sign_in users(:developer)
+    get new_advertisement_url
+    assert_redirected_to advertisements_path
+    assert_equal "You are not authorized to perform this action.", flash[:alert]
+  end
+
+  test "should deny developer access to edit advertisements" do
+    sign_in users(:developer)
+    get edit_advertisement_url(@advertisement)
+    assert_redirected_to advertisements_path
+    assert_equal "You are not authorized to perform this action.", flash[:alert]
+  end
+
+  test "should deny developer access to create advertisements" do
+    sign_in users(:developer)
+    post advertisements_url, params: { advertisement: {
+      description: @advertisement.description,
+      title: @advertisement.title,
+      url: @advertisement.url,
+      file: @file, # This requires the fixture_file_upload method to pass.
+      check_asai_all: '1',
+      check_asai_children: '1'
+    }}
+    assert_redirected_to advertisements_path
+    assert_equal "You are not authorized to perform this action.", flash[:alert]
+  end
+
+  test "should deny developer access to update advertisements" do
+    sign_in users(:developer)
+    patch advertisement_url(@advertisement), params: { advertisement: {
+      description: @advertisement.description,
+      title: @advertisement.title,
+      url: @advertisement.url,
+      file: @file,
+      check_asai_all: '1',
+      check_asai_children: '1'
+    } }
+    assert_redirected_to advertisements_path
+    assert_equal "You are not authorized to perform this action.", flash[:alert]
+  end
+
+  test "should deny developer access to delete advertisements" do
+    sign_in users(:developer)
+    delete advertisement_url(@advertisement)
+    assert_redirected_to advertisements_path
+    assert_equal "You are not authorized to perform this action.", flash[:alert]
+  end
+
 end

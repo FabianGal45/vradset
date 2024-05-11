@@ -2,7 +2,7 @@ class AdvertisementsController < ApplicationController
   include ApplicationHelper # Calls upone the application_helper.rb file where simple methods have been declared and can be reused here for simplicity.
   before_action :authenticate_user!, except: [:index, :get_image] #only display and show advertisements to users who are not logged in or request a random image
   before_action :set_advertisement, only: %i[ show edit update destroy ]
-  before_action :verify_permission, only: [:show, :edit, :update, :destroy]
+  before_action :verify_permission, only: [:show, :new, :edit, :create, :update, :destroy]
 
   # Class variable array of adcertisements with attached files(images) from the database that are in a random order.
   # A class variable is used to keep the state upon each request. Otherwise on each request the variable will reset.
