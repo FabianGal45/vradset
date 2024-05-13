@@ -1,4 +1,5 @@
 class VrassetsController < ApplicationController
+  include ApplicationHelper # Calls upone the application_helper.rb file where simple methods have been declared and can be reused here for simplicity.
   before_action :authenticate_user!, except: [ :index ] # Display VR assets to users who are not logged in.
   before_action :set_vrasset, only: %i[ show edit update destroy ] # Method used for the CRUD function of the VR asset.
   before_action :verify_user_is_admin, only: [:show, :new, :edit, :create, :update, :destroy] # Only admins should be able to create/update/interract with vrassets
@@ -65,9 +66,9 @@ class VrassetsController < ApplicationController
       @vrasset = Vrasset.find(params[:id])
     end
 
-    # Veify that the user is admin
+    # Verify that the user is admin
     def verify_user_is_admin
-      unless current_user.admin?
+      unless user_admin?
         redirect_to vrassets_path, alert: "You are not authorized to perform this action."
       end
     end

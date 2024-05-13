@@ -10,7 +10,6 @@ class User < ApplicationRecord
   # Enum used to save the string into an integer in the database
   enum role: { admin: 0, advertiser: 1, developer: 2 }
 
-  # UNIT TEST
   # Mehtod that validates on the server side that the first user signs up as an admin.
   def first_user_must_be_admin
     # The first registered user has to be an admin.

@@ -95,26 +95,18 @@ class AdvertisementsController < ApplicationController
     end
   end
 
-  # Checks used to ensure the user has the role advertiser
-  def check_advertiser_role
-    unless current_user.advertiser?
-      redirect_to root_path, alert: "You are not authorized to perform this action."
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_advertisement
       @advertisement = Advertisement.find(params[:id])
     end
 
-    # INTEGRATION TEST
+    # Check if the user is an advertiser or admin
     def verify_permission
-      unless current_user.advertiser? || current_user.admin?
+      unless user_advertiser_or_admin?
         redirect_to advertisements_path, alert: "You are not authorized to perform this action."
       end
     end
-
 
     # Only allow a list of trusted parameters through.
     def advertisement_params
