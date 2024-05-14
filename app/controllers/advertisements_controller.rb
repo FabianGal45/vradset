@@ -28,7 +28,7 @@ class AdvertisementsController < ApplicationController
     # https://www.geeksforgeeks.org/ruby-queue-shift-function/
     advertisement = @@image_queue.shift
 
-    # if there is a file attach redirect to the blob which has a file attached.
+    # if there is a file attached, redirect to the blob with said file.
     # https://stackoverflow.com/questions/50424251/how-can-i-get-url-of-my-attachment-stored-in-active-storage-in-my-rails-controll
     if advertisement&.file&.attached?
       redirect_to rails_blob_url(advertisement.file, disposition: "attachment", only_path: true)

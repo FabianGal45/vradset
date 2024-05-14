@@ -15,5 +15,5 @@ Rails.application.routes.draw do
   get 'tutorial', to: 'tutorial#index'
 
   # Defines the root path route ("/")
-  root "vrassets#index"
+  root "tutorial#index"
 end
