@@ -14,7 +14,7 @@ class VrassetsControllerTest < ActionDispatch::IntegrationTest
     @vrasset = vrassets(:one)
   end
 
-  test "user is signed in" do # Check to see if the admin user is signed in. If it is then all tests should run fine.
+  test "user is signed in" do
     sign_in @admin
     get root_url
     assert_response :success
@@ -121,13 +121,6 @@ class VrassetsControllerTest < ActionDispatch::IntegrationTest
     delete vrasset_url(@vrasset)
     assert_redirected_to new_user_session_path
   end
-
-
-
-
-
-
-
 
 
 
