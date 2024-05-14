@@ -2,7 +2,8 @@
 
 VR-Adset offers advertisers the opportunity to reach a new audience by showcasing their ads within a virtual reality (VR) environment. Achieved with the use of pre-built 3D objects like billboards and TVs, the platform simplifies the current available process of advertising. Currently, most companies reach out to agencies who build the entire VR environment for the use of only one ad campaign. This approach easily becomes costly due to developer fees and is time-consuming.
 
-Simplifying the available processes of advertising, VR-Adset creates a mutually beneficial setup not only for advertisers and developers but also for the VR industry. It aims to provide developers with an alternative source of income, whilst being easy to use, reaching new audiences, and offering constant availability with wider adoption by developers.
+Simplifying the available processes of advertising, VR-Adset creates a mutually beneficial setup not only for advertisers and developers but also for the VR industry.
+It aims to provide developers with a new tool for advertising, whilst being easy to use, reaching new audiences, and offering constant availability with the wider adoption by developers.
 
 ## Tutorial for Advertisers
 
